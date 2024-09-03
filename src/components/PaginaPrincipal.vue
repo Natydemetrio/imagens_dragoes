@@ -2,13 +2,16 @@
   <body>    
     <h1>Animais extraordinários</h1>
     <p class="grupo1">
-      <img :src="lowQuality1" @load="loadHighQuality1" :class="{ loaded: loaded1 }" alt="Dragão 1" />
+      <img :src="lowQuality1" @load="loadHighQuality1" :class="{ loaded: loaded1 }" alt="Dragão roxo com detalhes em azul nas escamas em uma pose majestosa observando o por do sul." aria-describedby="desc1" />
+      <span id="desc1" class="descricao">Dragão roxo com detalhes em azul nas escamas em uma pose majestosa observando o por do sul.</span>
     </p>
     <p class="grupo2">
-      <img :src="lowQuality2" @load="loadHighQuality2" :class="{ loaded: loaded2 }" alt="Dragão 2" />
+      <img :src="lowQuality2" @load="loadHighQuality2" :class="{ loaded: loaded2 }" alt="Dragão negro esguio nas chuva junto com uma mulher negra." aria-describedby="desc2" />
+      <span id="desc2" class="descricao">Dragão negro esguio nas chuva junto com uma mulher negra.</span>
     </p>
     <p class="grupo3">
-      <img :src="lowQuality3" @load="loadHighQuality3" :class="{ loaded: loaded3 }" alt="Dragão 3" />
+      <img :src="lowQuality3" @load="loadHighQuality3" :class="{ loaded: loaded3 }" alt="Enorme dragão alaranjado acima de uma cidade com um olhar marcante." aria-describedby="desc3" />
+      <span id="desc3" class="descricao">Enorme dragão alaranjado acima de uma cidade com um olhar marcante.</span>
     </p>
   </body>
 </template>
@@ -17,7 +20,6 @@
 export default {
   data() {
     return {
-      // Certifique-se de que os caminhos para as imagens de baixa e alta qualidade estão corretos
       lowQuality1: require('../assets/dragao_1_low.jpg'),
       highQuality1: require('../assets/dragao_1.jpg'),
       lowQuality2: require('../assets/dragao_2_low.jpg'),
@@ -31,7 +33,6 @@ export default {
   },
   methods: {
     loadHighQuality1(event) {
-      // Atribui a imagem de alta qualidade após o carregamento da de baixa qualidade
       event.target.src = this.highQuality1;
       this.loaded1 = true;
     },
@@ -48,6 +49,17 @@ export default {
 </script>
 
 <style scoped>
+body {
+  font-family: Arial, sans-serif;
+}
+
+.grupo1, .grupo2, .grupo3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 img {
   width: 100%;
   max-width: 800px;
@@ -58,5 +70,12 @@ img {
 /* Remove o blur quando a imagem de alta qualidade estiver carregada */
 img.loaded {
   filter: blur(0);
+}
+
+.descricao {
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+  color: #555;
 }
 </style>
